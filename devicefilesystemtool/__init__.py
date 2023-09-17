@@ -1,0 +1,1 @@
+from .devicefilesystemtool import write
