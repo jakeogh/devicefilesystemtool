@@ -8,6 +8,7 @@ import fastentrypoints
 dependencies = [
     "click",
     "mounttool @ git+https://git@github.com/jakeogh/mounttool",
+    "pathtool @ git+https://git@github.com/jakeogh/pathtool",
 ]
 
 config = {
