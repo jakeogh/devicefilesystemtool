@@ -9,6 +9,7 @@ dependencies = [
     "click",
     "mounttool @ git+https://git@github.com/jakeogh/mounttool",
     "pathtool @ git+https://git@github.com/jakeogh/pathtool",
+    "warntool @ git+https://git@github.com/jakeogh/warntool",
 ]
 
 config = {
