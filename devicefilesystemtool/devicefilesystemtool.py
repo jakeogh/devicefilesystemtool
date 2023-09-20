@@ -43,6 +43,7 @@ from clicktool import tv
 from eprint import eprint
 from mounttool import block_special_path_is_mounted
 from pathtool import path_is_block_special
+from pathtool import wait_for_block_special_device_to_exist
 from warntool import warn
 
 logging.basicConfig(level=logging.INFO)
@@ -59,7 +60,7 @@ def cli(
     ctx,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ) -> None:
     tty, verbose = tv(
         ctx=ctx,
@@ -111,7 +112,7 @@ def write(
     raw_device: bool,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ) -> None:
     tty, verbose = tv(
         ctx=ctx,
@@ -151,6 +152,6 @@ def write(
         mkfs_command = mkfs_command.bake(device.as_posix())
     else:
         assert False
-
+    wait_for_block_special_device_to_exist(device=device)
     result = mkfs_command()
     icp(result)
