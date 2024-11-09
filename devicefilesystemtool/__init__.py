@@ -1,1 +1,1 @@
-from .devicefilesystemtool import write
+from .devicefilesystemtool import write as write
