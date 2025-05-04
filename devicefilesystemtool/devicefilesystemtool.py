@@ -39,7 +39,7 @@ from asserttool import icp
 from click_auto_help import AHGroup
 from clicktool import click_add_options
 from clicktool import click_global_options
-from clicktool import tv
+from clicktool import tvicgvd
 from eprint import eprint
 from mounttool import block_special_path_is_mounted
 from pathtool import path_is_block_special
@@ -62,18 +62,13 @@ def cli(
     dict_output: bool,
     verbose: bool = False,
 ) -> None:
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
-    if not verbose:
-        ic.disable()
-    else:
-        ic.enable()
-
-    if verbose_inf:
-        gvd.enable()
 
 
 @cli.command()
@@ -114,27 +109,25 @@ def write(
     dict_output: bool,
     verbose: bool = False,
 ) -> None:
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
-    if not verbose:
-        ic.disable()
-    else:
-        ic.enable()
-
-    if verbose_inf:
-        gvd.enable()
     if not raw_device:
         assert device.as_posix()[-1].isdigit()
-    assert path_is_block_special(device)
+    assert path_is_block_special(device, symlink_ok=True)
     assert not block_special_path_is_mounted(
         device,
     )
     if not force:
-        warn((device,))
+        warn(
+            (device,),
+            symlink_ok=True,
+        )
 
     # this would introduce a devicetool dep...
     # wait_for_block_special_device_to_exist(device=device)
