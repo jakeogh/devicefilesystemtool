@@ -98,11 +98,11 @@ def write(
 
     match filesystem:
         case "fat16":
-            mkfs_command = hs.Command("mkfs.fat").bake("-F16", "-s2", device.as_posix())
+            mkfs_command = hs.Command("mkfs.fat").rebake("-F16", "-s2", device.as_posix())
         case "fat32":
-            mkfs_command = hs.Command("mkfs.fat").bake("-F32", "-s2", device.as_posix())
+            mkfs_command = hs.Command("mkfs.fat").rebake("-F32", "-s2", device.as_posix())
         case "ext4":
-            mkfs_command = hs.Command("mkfs.ext4").bake(device.as_posix())
+            mkfs_command = hs.Command("mkfs.ext4").rebake(device.as_posix())
         case _:
             raise ValueError(f"unknown filesystem: {filesystem}")
     wait_for_block_special_device_to_exist(device=device)
