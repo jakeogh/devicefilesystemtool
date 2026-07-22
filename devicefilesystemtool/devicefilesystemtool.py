@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
-# -*- coding: utf8 -*-
-# tab-width:4
 
-from __future__ import annotations
-
-import logging
 from pathlib import Path
 from signal import SIG_DFL
 from signal import SIGPIPE
 from signal import signal
 
 import click
-import sh
+import hs
 from asserttool import ic
 from asserttool import icp
 from click_auto_help import AHGroup
@@ -24,10 +19,6 @@ from pathtool import path_is_block_special
 from pathtool import wait_for_block_special_device_to_exist
 from warntool import warn
 
-logging.basicConfig(level=logging.INFO)
-sh.mv = None  # use sh.busybox('mv'), coreutils ignores stdin read errors
-
-# this should be earlier in the imports, but isort stops working
 signal(SIGPIPE, SIG_DFL)
 
 
@@ -35,7 +26,7 @@ signal(SIGPIPE, SIG_DFL)
 @click_add_options(click_global_options)
 @click.pass_context
 def cli(
-    ctx,
+    ctx: click.Context,
     verbose_inf: bool,
     dict_output: bool,
     verbose: bool = False,
@@ -78,7 +69,7 @@ def cli(
 @click_add_options(click_global_options)
 @click.pass_context
 def write(
-    ctx,
+    ctx: click.Context,
     device: Path,
     filesystem: str,
     force: bool,
@@ -98,31 +89,22 @@ def write(
     if not raw_device:
         assert device.as_posix()[-1].isdigit()
     assert path_is_block_special(device, symlink_ok=True)
-    assert not block_special_path_is_mounted(
-        device,
-    )
+    assert not block_special_path_is_mounted(device)
     if not force:
         warn(
             (device,),
             symlink_ok=True,
         )
 
-    # this would introduce a devicetool dep...
-    # wait_for_block_special_device_to_exist(device=device)
-    if filesystem == "fat16":
-        mkfs_command = sh.Command("mkfs.fat")
-        mkfs_command = mkfs_command.bake("-F16", "-s2")
-        mkfs_command = mkfs_command.bake(device.as_posix())
-
-    elif filesystem == "fat32":
-        mkfs_command = sh.Command("mkfs.fat")
-        mkfs_command = mkfs_command.bake("-F32", "-s2")
-        mkfs_command = mkfs_command.bake(device.as_posix())
-    elif filesystem == "ext4":
-        mkfs_command = sh.Command("mkfs.ext4")
-        mkfs_command = mkfs_command.bake(device.as_posix())
-    else:
-        assert False
+    match filesystem:
+        case "fat16":
+            mkfs_command = hs.Command("mkfs.fat").bake("-F16", "-s2", device.as_posix())
+        case "fat32":
+            mkfs_command = hs.Command("mkfs.fat").bake("-F32", "-s2", device.as_posix())
+        case "ext4":
+            mkfs_command = hs.Command("mkfs.ext4").bake(device.as_posix())
+        case _:
+            raise ValueError(f"unknown filesystem: {filesystem}")
     wait_for_block_special_device_to_exist(device=device)
     result = mkfs_command()
     icp(result)
