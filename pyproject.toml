@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "devicefilesystemtool"
-version = "1!0.0.1787634045"
+version = "1!0.0.1787634083"
 description = "create filesystems"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },

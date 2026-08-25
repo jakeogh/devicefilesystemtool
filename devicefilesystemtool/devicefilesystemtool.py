@@ -12,8 +12,7 @@ from asserttool import icp
 from click_auto_help import AHGroup
 from clicktool import click_add_options
 from clicktool import click_global_options
-from clicktool import tvicgvd
-from globalverbose import gvd
+from clicktool import tvic
 from mounttool import block_special_path_is_mounted
 from pathtool import path_is_block_special
 from pathtool import wait_for_block_special_device_to_exist
@@ -31,12 +30,11 @@ def cli(
     dict_output: bool,
     verbose: bool = False,
 ) -> None:
-    tty, verbose = tvicgvd(
+    tty, verbose = tvic(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
         ic=ic,
-        gvd=gvd,
     )
 
 
@@ -78,12 +76,11 @@ def write(
     dict_output: bool,
     verbose: bool = False,
 ) -> None:
-    tty, verbose = tvicgvd(
+    tty, verbose = tvic(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
         ic=ic,
-        gvd=gvd,
     )
 
     if not raw_device:
