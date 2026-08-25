@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devicefilesystemtool"
+version = "1!0.0.1787634045"
+description = "create filesystems"
+authors = [
+    { name = "Justin Keogh", email = "github.com@v6y.net" },
+]
+dependencies = [
+    "click",
+    "asserttool @ git+https://github.com/jakeogh/asserttool@4bd23a06c2161e488415acde89c29537e6720cc1",
+    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@c53f57c78529a51ae9b03f579d7ee6f2d63ca03a",
+    "clicktool @ git+https://github.com/jakeogh/clicktool@4bc98af7590652693aef664af7485acde40688c2",
+    "hs @ git+https://github.com/jakeogh/hs@b33c88f35cd24e773fea6ca4758193c9e815536d",
+    "mounttool @ git+https://github.com/jakeogh/mounttool@1dc451c21a89a45ffb69161a6ed7432c8192d9a6",
+    "pathtool @ git+https://github.com/jakeogh/pathtool@8ad5953a4328e53c4e567de8349b863ebce0e67e",
+    "warntool @ git+https://github.com/jakeogh/warntool@c61bf0caba8dbbcec97662734f45b77bb59a5c95",
+]
+license = "ISC"
+requires-python = ">=3.12"
+
+[project.urls]
+Homepage = "https://github.com/jakeogh/devicefilesystemtool"
+
+[project.scripts]
+devicefilesystemtool = "devicefilesystemtool.devicefilesystemtool:cli"
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+packages = ["devicefilesystemtool"]
+
+[tool.setuptools.package-data]
+devicefilesystemtool = [
+    "py.typed",
+]
