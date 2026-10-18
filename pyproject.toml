@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "devicefilesystemtool"
-version = "1!0.0.1790565652"
+version = "1!0.0.1792350368"
 description = "create filesystems"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -12,7 +12,7 @@ authors = [
 dependencies = [
     "click",
     "asserttool @ git+https://github.com/jakeogh/asserttool@4bd23a06c2161e488415acde89c29537e6720cc1",
-    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@0308bf2e30095ce9c87a083e1f013731827e60aa",
+    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@9745b515e7beaaa046f802b5b3ad516720fc2475",
     "clicktool @ git+https://github.com/jakeogh/clicktool@999e9c509115b90ab0149b0b611c0ca90a7baa85",
     "hs @ git+https://github.com/jakeogh/hs@b33c88f35cd24e773fea6ca4758193c9e815536d",
     "mounttool @ git+https://github.com/jakeogh/mounttool@1dc451c21a89a45ffb69161a6ed7432c8192d9a6",
