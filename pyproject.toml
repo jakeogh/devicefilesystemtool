@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "devicefilesystemtool"
-version = "1!0.0.1792814304"
+version = "1!0.0.1795217366"
 description = "create filesystems"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -12,11 +12,11 @@ authors = [
 dependencies = [
     "click",
     "asserttool @ git+https://github.com/jakeogh/asserttool@4bd23a06c2161e488415acde89c29537e6720cc1",
-    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@9745b515e7beaaa046f802b5b3ad516720fc2475",
+    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@3bddf633cb62ada70968ac16aea5a6c484e6459b",
     "clicktool @ git+https://github.com/jakeogh/clicktool@fe263331c27a4b392ce04261d83267759098d6b7",
-    "hs @ git+https://github.com/jakeogh/hs@b33c88f35cd24e773fea6ca4758193c9e815536d",
+    "hs @ git+https://github.com/jakeogh/hs@38f44d64cc8d12c41c5e6b470c3313a7a37c6f57",
     "mounttool @ git+https://github.com/jakeogh/mounttool@1dc451c21a89a45ffb69161a6ed7432c8192d9a6",
-    "pathtool @ git+https://github.com/jakeogh/pathtool@8ad5953a4328e53c4e567de8349b863ebce0e67e",
+    "pathtool @ git+https://github.com/jakeogh/pathtool@912fd753bbe5c0ec5385e75aff935135079a1222",
     "warntool @ git+https://github.com/jakeogh/warntool@c61bf0caba8dbbcec97662734f45b77bb59a5c95",
 ]
 license = "ISC"
